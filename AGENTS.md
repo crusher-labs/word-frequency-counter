@@ -1,25 +1,22 @@
 # AGENTS.md - Word Frequency Counter
 
-Single-purpose static tool: Count word frequency and find the most repeated words in any text. Part of the crusher-labs **static tools line** (frozen). Hosted on GitHub Pages at https://crusher-labs.github.io/word-frequency-counter/
+Single-purpose static tool, built as a **world page**: card catalog. Count how often each word appears in a text on a library card-catalog drawer: every distinct word is a 3 x 5 card with its count, share and a typed frequency bar, filed in rank order on the brass rod behind Top 10 and The rest guide cards, riffling into place as you type. Ignore case, drop common words, minimum length, top 25 / 50 / 100 / all, lexical density, copy as CSV or list. Nothing uploaded. Part of the crusher-labs static tools line. Hosted on GitHub Pages at https://crusher-labs.github.io/word-frequency-counter/
 
-Workspace rules: `x:\crusher-labs\AGENTS.md`. Global rules: `~/.claude/CLAUDE.md`.
+Workspace rules: `x:\crusher-labs\AGENTS.md`. Global rules: `~/.claude/CLAUDE.md`. Design standard: `x:\crusher-labs\docs\design-language.md` (tools section) and the atlas `x:\crusher-labs\docs\context\tools-theme-atlas.md`.
 
 ## What it is
 
 - One `index.html`, no build step, no backend, fully client-side.
-- Consumes `crusher-ui-kit` via the jsDelivr CDN (the workspace static contract).
+- Owns its CSS, fonts (Google Fonts) and mode. Does NOT load `crusher-ui-kit`; has no style switcher. `<html data-world="...">` marks it for the world-page contract.
 
-## Static contract (must hold)
+## Contract (must hold)
 
-- `<html>` carries `data-default-theme="minimal" data-theme-lock="minimal" data-default-mode="dark" data-default-brand="#0ea5e9"`; `<body class="crusher-tool-page">`; one fixed `<crusher-style-switcher>`. No Tailwind CDN, no Font Awesome.
+- SEO-META block, CSP meta (fonts.googleapis/gstatic + api.web3forms only, plus any host the tool genuinely needs), favicon, canonical, OG tags, `<h1>`, prose section with `<h2>` + `<details>` FAQ, the Web3Forms feedback form with honeypot, a link to https://tools.muhammadhassaanjaved.com/.
 - Validated by `tools-hub/scripts/check-static.mjs` (run `npm run check:static` from `repos/tools-hub`).
-
-## Status: FROZEN
-
-The static tools line is frozen at 30 (strategy: `x:\crusher-labs\docs\context\strategy-analysis.md`). Don't add features or tools without a strategy revisit.
 
 ## What NOT to do
 
-- Don't commit to `main` directly (`dev` -> manual QA -> fast-forward `main`). No `Co-Authored-By` / AI-attribution trailers.
-- Don't edit `crusher-ui-kit`; request changes via the workspace `private/framework-feedback.md`.
-- Don't add Tailwind CDN / Font Awesome; use framework primitives + inline SVGs.
+- Don't add the kit pins or the style switcher back; a world has a mode.
+- Don't restyle it toward the old dark shell. The object is the design.
+- Don't commit to `main` directly (`dev` -> QA at 1440 + 390 -> fast-forward `main`). No `Co-Authored-By` / AI-attribution trailers.
+- Don't add Tailwind CDN / Font Awesome.
